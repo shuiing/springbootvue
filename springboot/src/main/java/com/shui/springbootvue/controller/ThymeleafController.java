@@ -10,6 +10,10 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * thymeleaf模板，访问
+ * http://localhost:8081/thymeleaf/books
+ */
 @Controller
 @RequestMapping("thymeleaf")
 public class ThymeleafController {

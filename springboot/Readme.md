@@ -42,3 +42,9 @@ The following guides illustrate how to use some features concretely:
 
 ## 图片
 ![图片](http://imgtech.gmw.cn/attachement/jpg/site2/20111223/f04da22d7ba7105e1d7507.jpg)
+
+## RabbitMQ 
+```
+
+
+```

@@ -1,5 +1,7 @@
 # 说明文档
 
+需要Git push 才能将代码提交到GitHubh中
+
 ###### 开发配置
 
 + application配置

@@ -26,7 +26,7 @@ https://www.cnblogs.com/baixianlong/p/10659045.html
 注意：此方式修改配置值后，在下一次调度结束后，才会更新调度器，不会在修改配置值时实时更新，实时更新需要在修改配置值时额外增加相关逻辑处理。
 ```
 
-### demo6 动态定时任务（改接口）
+### demo6 动态定时任务（自定义）
 ```
 使用threadPoolTaskScheduler类可实现动态添加删除功能，当然也可实现执行频率的调整
 
@@ -39,7 +39,6 @@ ThreadPoolTaskExecutor相对于ThreadPoolExecutor的改进点：
       2、实现AsyncListenableTaskExecutor接口，支持对FutureTask添加success和fail的回调，任务成功或失败的时候回执行对应回调方法。
       3、因为是spring的工具类，所以抛出的RejectedExecutionException也会被转换为spring框架的TaskRejectedException异常(这个无所谓)
       4、提供默认ThreadFactory实现，直接通过参数重载配置
-
 ```
 
 ### demo3 多线程定时任务(异步)

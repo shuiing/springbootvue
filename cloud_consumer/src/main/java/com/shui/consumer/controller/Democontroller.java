@@ -21,7 +21,7 @@ public class Democontroller {
      */
     @GetMapping("/consumer")
     public String dc() {
-        ServiceInstance serviceInstance = loadBalancerClient.choose("cloud_client");
+        ServiceInstance serviceInstance = loadBalancerClient.choose("cloud-client");
         String url = "http://" + serviceInstance.getHost() + ":" + serviceInstance.getPort() + "/dc";
         System.out.println(url);
         return restTemplate.getForObject(url, String.class);

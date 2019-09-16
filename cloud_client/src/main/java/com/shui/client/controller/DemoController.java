@@ -23,4 +23,10 @@ public class DemoController {
         return services;
     }
 
+    //用于其他服务调用测试
+    @GetMapping("/fegintest")
+    public String fegintest() {
+        return "调用cloud-client成功";
+    }
+
 }

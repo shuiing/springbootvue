@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("message")
 public class MessageController {
-    @Autowired
-    private MsgProducer msgProducer;
-
-    @PostMapping("/sendMess")
-    public void sendMess(String data){
-        msgProducer.sendMsg(data);
-    }
+//    @Autowired
+//    private MsgProducer msgProducer;
+//
+//    @PostMapping("/sendMess")
+//    public void sendMess(String data){
+//        msgProducer.sendMsg(data);
+//    }
 }

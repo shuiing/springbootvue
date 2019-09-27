@@ -27,111 +27,111 @@ import org.springframework.context.annotation.Scope;
  Consumer:消息消费者,就是接受消息的程序.
  Channel:消息通道,在客户端的每个连接里,可建立多个channel.
  */
-@Configuration
+//@Configuration
 public class RabbitConfig {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-//配置
-    @Value("${spring.rabbitmq.host}")
-    private String host;
-
-    @Value("${spring.rabbitmq.port}")
-    private int port;
-
-    @Value("${spring.rabbitmq.username}")
-    private String username;
-
-    @Value("${spring.rabbitmq.password}")
-    private String password;
-
-//交换机
-    public static final String EXCHANGE_A = "my-mq-exchange_A";
-    public static final String EXCHANGE_B = "my-mq-exchange_B";
-    public static final String EXCHANGE_C = "my-mq-exchange_C";
-    public static final String FANOUT_EXCHANGE = "my-mq-exchange_D";
-
-//队列
-    public static final String QUEUE_A = "QUEUE_A";
-    public static final String QUEUE_B = "QUEUE_B";
-    public static final String QUEUE_C = "QUEUE_C";
-
-//关键字
-    public static final String ROUTINGKEY_A = "spring-boot-routingKey_A";
-    public static final String ROUTINGKEY_B = "spring-boot-routingKey_B";
-    public static final String ROUTINGKEY_C = "spring-boot-routingKey_C";
-
-//连接工厂
-    @Bean
-    public ConnectionFactory connectionFactory() {
-        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(host,port);
-        connectionFactory.setUsername(username);
-        connectionFactory.setPassword(password);
-        connectionFactory.setVirtualHost("/");
-        connectionFactory.setPublisherConfirms(true);
-        return connectionFactory;
-    }
-
-    @Bean
-    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-    //必须是prototype类型
-    public RabbitTemplate rabbitTemplate() {
-        RabbitTemplate template = new RabbitTemplate(connectionFactory());
-        return template;
-    }
-
-
-    /**
-     * 针对消费者配置
-     * 1. 设置交换机类型
-     * 2. 将队列绑定到交换机
-     * FanoutExchange: 将消息分发到所有的绑定队列，无routingkey的概念
-     * HeadersExchange ：通过添加属性key-value匹配
-     * DirectExchange:按照routingkey分发到指定队列
-     * TopicExchange:多关键字匹配
-     */
-
-
- //获取交换机A
-    @Bean
-    public DirectExchange defaultExchange() {
-        return new DirectExchange(EXCHANGE_A);
-    }
-
- //获取队列A
-    @Bean
-    public Queue queueA() {
-        return new Queue(QUEUE_A, true); //队列持久
-    }
-
-//通过关键字将交换机和队列绑定在一起
-    @Bean
-    public Binding binding() {
-        return BindingBuilder.bind(queueA()).to(defaultExchange()).with(RabbitConfig.ROUTINGKEY_A);
-    }
-
-
-    /**
-     * 广播模式
-     */
-    //配置fanout_exchange
-    @Bean
-    FanoutExchange fanoutExchange() {
-        return new FanoutExchange(RabbitConfig.FANOUT_EXCHANGE);
-    }
-
-    //把所有的队列都绑定到这个交换机上去
-    @Bean
-    Binding bindingExchangeA(Queue queueA,FanoutExchange fanoutExchange) {
-        return BindingBuilder.bind(queueA).to(fanoutExchange);
-    }
-    @Bean
-    Binding bindingExchangeB(Queue queueB, FanoutExchange fanoutExchange) {
-        return BindingBuilder.bind(queueB).to(fanoutExchange);
-    }
-    @Bean
-    Binding bindingExchangeC(Queue queueC, FanoutExchange fanoutExchange) {
-        return BindingBuilder.bind(queueC).to(fanoutExchange);
-    }
+//
+//    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+////配置
+//    @Value("${spring.rabbitmq.host}")
+//    private String host;
+//
+//    @Value("${spring.rabbitmq.port}")
+//    private int port;
+//
+//    @Value("${spring.rabbitmq.username}")
+//    private String username;
+//
+//    @Value("${spring.rabbitmq.password}")
+//    private String password;
+//
+////交换机
+//    public static final String EXCHANGE_A = "my-mq-exchange_A";
+//    public static final String EXCHANGE_B = "my-mq-exchange_B";
+//    public static final String EXCHANGE_C = "my-mq-exchange_C";
+//    public static final String FANOUT_EXCHANGE = "my-mq-exchange_D";
+//
+////队列
+//    public static final String QUEUE_A = "QUEUE_A";
+//    public static final String QUEUE_B = "QUEUE_B";
+//    public static final String QUEUE_C = "QUEUE_C";
+//
+////关键字
+//    public static final String ROUTINGKEY_A = "spring-boot-routingKey_A";
+//    public static final String ROUTINGKEY_B = "spring-boot-routingKey_B";
+//    public static final String ROUTINGKEY_C = "spring-boot-routingKey_C";
+//
+////连接工厂
+//    @Bean
+//    public ConnectionFactory connectionFactory() {
+//        CachingConnectionFactory connectionFactory = new CachingConnectionFactory(host,port);
+//        connectionFactory.setUsername(username);
+//        connectionFactory.setPassword(password);
+//        connectionFactory.setVirtualHost("/");
+//        connectionFactory.setPublisherConfirms(true);
+//        return connectionFactory;
+//    }
+//
+//    @Bean
+//    @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+//    //必须是prototype类型
+//    public RabbitTemplate rabbitTemplate() {
+//        RabbitTemplate template = new RabbitTemplate(connectionFactory());
+//        return template;
+//    }
+//
+//
+//    /**
+//     * 针对消费者配置
+//     * 1. 设置交换机类型
+//     * 2. 将队列绑定到交换机
+//     * FanoutExchange: 将消息分发到所有的绑定队列，无routingkey的概念
+//     * HeadersExchange ：通过添加属性key-value匹配
+//     * DirectExchange:按照routingkey分发到指定队列
+//     * TopicExchange:多关键字匹配
+//     */
+//
+//
+// //获取交换机A
+//    @Bean
+//    public DirectExchange defaultExchange() {
+//        return new DirectExchange(EXCHANGE_A);
+//    }
+//
+// //获取队列A
+//    @Bean
+//    public Queue queueA() {
+//        return new Queue(QUEUE_A, true); //队列持久
+//    }
+//
+////通过关键字将交换机和队列绑定在一起
+//    @Bean
+//    public Binding binding() {
+//        return BindingBuilder.bind(queueA()).to(defaultExchange()).with(RabbitConfig.ROUTINGKEY_A);
+//    }
+//
+//
+//    /**
+//     * 广播模式
+//     */
+//    //配置fanout_exchange
+//    @Bean
+//    FanoutExchange fanoutExchange() {
+//        return new FanoutExchange(RabbitConfig.FANOUT_EXCHANGE);
+//    }
+//
+//    //把所有的队列都绑定到这个交换机上去
+//    @Bean
+//    Binding bindingExchangeA(Queue queueA,FanoutExchange fanoutExchange) {
+//        return BindingBuilder.bind(queueA).to(fanoutExchange);
+//    }
+//    @Bean
+//    Binding bindingExchangeB(Queue queueB, FanoutExchange fanoutExchange) {
+//        return BindingBuilder.bind(queueB).to(fanoutExchange);
+//    }
+//    @Bean
+//    Binding bindingExchangeC(Queue queueC, FanoutExchange fanoutExchange) {
+//        return BindingBuilder.bind(queueC).to(fanoutExchange);
+//    }
 
 
     /**

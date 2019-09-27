@@ -1,21 +1,22 @@
-//package com.shui.springbootvue.other.scheduling.demo4;
+package com.shui.springbootvue.other.scheduling.demo4;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.TaskScheduler;
+import org.springframework.scheduling.annotation.SchedulingConfigurer;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
+import org.springframework.scheduling.config.ScheduledTaskRegistrar;
+
+import java.util.concurrent.ThreadPoolExecutor;
 //
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.scheduling.TaskScheduler;
-//import org.springframework.scheduling.annotation.SchedulingConfigurer;
-//import org.springframework.scheduling.concurrent.ThreadPoolTaskScheduler;
-//import org.springframework.scheduling.config.ScheduledTaskRegistrar;
-//
-//import java.util.concurrent.ThreadPoolExecutor;
-////
-//
-///**
-// * 多线程定时任务(线程池配置)
-// */
-//
+
+/**
+ * 多线程定时任务(线程池配置)
+ */
+
 //@Configuration
+public class ScheduledConfig {
 //public class ScheduledConfig implements SchedulingConfigurer {
 //
 //    @Autowired
@@ -42,4 +43,4 @@
 //        taskScheduler.setAwaitTerminationSeconds(60);
 //        return taskScheduler;
 //    }
-//}
+}

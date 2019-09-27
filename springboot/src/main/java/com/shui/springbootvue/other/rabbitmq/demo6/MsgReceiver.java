@@ -8,16 +8,16 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-@RabbitListener(queues = RabbitConfig.QUEUE_A)
+//@RabbitListener(queues = RabbitConfig.QUEUE_A)
 
 public class MsgReceiver {
-
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-    //一个生产者，一个消费者
-    @RabbitHandler
-    public void process(String content) {
-        logger.info("接收处理队列A当中的消息： " + content);
-    }
+//
+//    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+//
+//    //一个生产者，一个消费者
+//    @RabbitHandler
+//    public void process(String content) {
+//        logger.info("接收处理队列A当中的消息： " + content);
+//    }
 
 }

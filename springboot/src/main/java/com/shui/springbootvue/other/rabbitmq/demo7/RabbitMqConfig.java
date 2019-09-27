@@ -1,21 +1,21 @@
-//package com.shui.springbootvue.other.rabbitmq.demo7;
-//
-//import org.springframework.amqp.core.*;
-//import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
-//import org.springframework.amqp.rabbit.connection.ConnectionFactory;
-//import org.springframework.amqp.rabbit.core.RabbitAdmin;
-//import org.springframework.beans.factory.annotation.Value;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.context.annotation.PropertySource;
-//
-//
-///**
-// * 三种类型得交换机
-// */
+package com.shui.springbootvue.other.rabbitmq.demo7;
+
+import org.springframework.amqp.core.*;
+import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
+import org.springframework.amqp.rabbit.connection.ConnectionFactory;
+import org.springframework.amqp.rabbit.core.RabbitAdmin;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+
+
+/**
+ * 三种类型得交换机
+ */
 //@Configuration
 //@PropertySource(value = "classpath:application-dev.properties")
-//public class RabbitMqConfig {
+public class RabbitMqConfig {
 //
 //    @Value("${rabbitmq.host}")
 //    private String host;
@@ -128,5 +128,5 @@
 //
 //        return admin;
 //    }
-//
-//}
+
+}

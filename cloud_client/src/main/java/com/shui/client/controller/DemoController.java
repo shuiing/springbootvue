@@ -57,6 +57,10 @@ public class DemoController {
         System.out.println(demoInteface.sendFile(file));
     }
 
+    /**
+     * 获取配置
+     * @return
+     */
     @GetMapping("/info")
     public String getInfo(){
         return info;

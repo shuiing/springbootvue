@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import javax.sql.DataSource;
-import java.sql.SQLException;
 
 /**
  * Druid配置类
@@ -48,6 +47,56 @@ public class DruidConfig {
     @Value("${spring.datasource.driver-class-name}")
     private String driverClassName;
 
+    @Value("${spring.datasource.initialSize}")
+    private int initialSize;
+
+    @Value("${spring.datasource.minIdle}")
+    private int minIdle;
+
+    @Value("${spring.datasource.maxActive}")
+    private int maxActive;
+
+    @Value("${spring.datasource.maxWait}")
+    private int maxWait;
+
+    @Value("${spring.datasource.timeBetweenEvictionRunsMillis}")
+    private int timeBetweenEvictionRunsMillis;
+
+    @Value("${spring.datasource.minEvictableIdleTimeMillis}")
+    private int minEvictableIdleTimeMillis;
+
+    @Value("${spring.datasource.validationQuery}")
+    private String validationQuery;
+
+    @Value("${spring.datasource.testWhileIdle}")
+    private boolean testWhileIdle;
+
+    @Value("${spring.datasource.testOnBorrow}")
+    private boolean testOnBorrow;
+
+    @Value("${spring.datasource.testOnReturn}")
+    private boolean testOnReturn;
+
+    @Value("${spring.datasource.filters}")
+    private String filters;
+
+    @Value("${spring.datasource.logSlowSql}")
+    private String logSlowSql;
+
+    @Value("${spring.datasource.connectionProperties}")
+    private String connectionProperties;
+
+    @Bean
+    public ServletRegistrationBean druidServlet() throws Exception {
+        ServletRegistrationBean reg = new ServletRegistrationBean();
+        reg.setServlet(new StatViewServlet());
+        reg.addUrlMappings("/druid/*");//配置访问URL
+        reg.addInitParameter("loginUsername", username);  //配置用户名，这里使用数据库账号。
+        reg.addInitParameter("loginPassword", ConfigTools.decrypt(publicKey,password));  //配置用户名，这里使用数据库密码
+        reg.addInitParameter("logSlowSql", logSlowSql);   //是否启用慢sql
+        return reg;
+    }
+
 
     /**
      * 这个应该是数据库连接池配置
@@ -61,6 +110,7 @@ public class DruidConfig {
         datasource.setUsername(username);
         datasource.setPassword(ConfigTools.decrypt(publicKey,password));
         datasource.setDriverClassName(driverClassName);
+        //datasource.set...
         return datasource;
     }
 

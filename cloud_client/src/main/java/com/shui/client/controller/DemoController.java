@@ -1,6 +1,8 @@
 package com.shui.client.controller;
 
 import com.shui.client.demo.DemoInteface;
+import com.shui.client.mapper.TPurchaseOrderMapper;
+import com.shui.client.model.TPurchaseOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 /**
  * 测试
@@ -23,6 +27,8 @@ public class DemoController {
     DiscoveryClient discoveryClient;
     @Autowired
     private DemoInteface demoInteface;
+    @Autowired
+    private TPurchaseOrderMapper tPurchaseOrderMapper;
 
     @Value("${info.profile}")
     private String info;
@@ -64,5 +70,10 @@ public class DemoController {
     @GetMapping("/info")
     public String getInfo(){
         return info;
+    }
+
+    @GetMapping("/mysql")
+    public List<TPurchaseOrder> getMysql(){
+        return tPurchaseOrderMapper.selectAll();
     }
 }

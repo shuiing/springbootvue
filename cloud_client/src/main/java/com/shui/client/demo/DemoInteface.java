@@ -42,5 +42,5 @@ public interface DemoInteface {
 
 
     @GetMapping("/testfegin")
-    String fegin();
+    String fegintest();
 }

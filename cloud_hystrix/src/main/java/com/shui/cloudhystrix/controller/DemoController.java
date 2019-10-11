@@ -1,18 +1,19 @@
-package com.shui.ribbon.controller;
+package com.shui.cloudhystrix.controller;
 
+import com.shui.cloudhystrix.service.ConsumerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class DemoController {
 
     @Autowired
-    RestTemplate restTemplate;
+    ConsumerService consumerService;
 
-    @GetMapping("/ribbon")
-    public String dc(){
-        return restTemplate.getForObject("http://config-client/dc",String.class);
+    @GetMapping("/consumer")
+    public String dc() {
+        return consumerService.consumer();
     }
+
 }

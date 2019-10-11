@@ -31,6 +31,14 @@
         </dependency>
 
 
+        <!--服务监控面板-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+            <version>1.4.4.RELEASE</version>
+        </dependency>
+
+        <!--服务容错-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>

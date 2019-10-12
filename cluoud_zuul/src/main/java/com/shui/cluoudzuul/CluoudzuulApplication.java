@@ -1,5 +1,6 @@
 package com.shui.cluoudzuul;
 
+import com.didispace.swagger.butler.EnableSwaggerButler;
 import com.shui.cluoudzuul.config.AccessFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Bean;
 @EnableZuulProxy
 @EnableDiscoveryClient
 @SpringBootApplication
+@EnableSwaggerButler
 public class CluoudzuulApplication {
 
     public static void main(String[] args) {
